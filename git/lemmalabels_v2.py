@@ -20,10 +20,13 @@ def removeNoise(df):
   df.sort_values(by="LEMMA", ascending=True, inplace=True, kind='heapsort')
   return df
 
-
+'''
+    takes in pandas dataframe and gives out dictionary
+'''
 def runToLabels(df):
   start_time = time.time()
   print len(df)
+  
   ADJ = pd.DataFrame(data=np.nan, index=['LEMMA'],columns=['LEMMA'])
   for i in xrange(0,len(df)):
       lemma = df.at[i,'LEMMA']
