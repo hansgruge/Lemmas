@@ -18,26 +18,22 @@ def read_data(file_to_read):
                 #print i, cols[2], cols[1], cols[3], cols[5].split('|')
                 feats = cols[5].split('|')
                 #print cols[2]
+                #split features to pieces
                 for feat in feats:
+                    #POS to dict and create inner dictionary for lemmas if POS doesn't exist
                     if cols[3] not in d:
                         d[cols[3]] = {}
+                    #Lemmas to dict if doesn't exist create new dictionary for features
                     if cols[2] not in d[cols[3]]:
                         d[cols[3]][cols[2]] = {}
+                    #Features to correct POS/lemma 1st key: value pair set value 1 else add 1 more to current lemma
                     if feat not in d[cols[3]][cols[2]]:
                         d[cols[3]][cols[2]][feat] = 1
                     else:
                         d[cols[3]][cols[2]][feat] += 1
-                    #else:
-                    #    d[cols[3]] = dict(cols[2])
-                    #if d[cols[3]][cols[2]] in d:
-                    #    d[cols[3]][cols[2]] ='test'
-
-                    # if d[cols[3]][cols[2]][feat] in d:
-                    #     d[cols[3]][cols[2]][feat] += 1
-                    # else:
-                    #     d[cols[3]][cols[2]][feat] = 1
 
 
+            #with this you can limit how many rows it reads. Just for testing purposes.
             #if i > 200:
             #    break
 
@@ -54,12 +50,12 @@ def write_to_csv(dict_to_write):
                 temp = (k)
 
                 for kk, vv in v.items():
-                    print kk, vv
+                    #print kk, vv
                     if temp == '':
                         temp = temp + str(kk) + ':' + str(vv)
                     else:
                         temp = temp + ', ' + str(kk) + ':' + str(vv)
-                print temp
+                #print temp
                 temp = temp + '\n'
                 csv_file.write(temp)
 
