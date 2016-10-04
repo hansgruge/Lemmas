@@ -38,21 +38,30 @@ def read_data(file_to_read):
                     #     d[cols[3]][cols[2]][feat] = 1
 
 
-#            if i > 200:
-#                break
+            #if i > 200:
+            #    break
 
     return d
 
 
 def write_to_csv(dict_to_write):
-    with open('output.csv', 'wb') as csv_file:
-        writer = csv.writer(csv_file)
+    with open('output1.csv', 'wb') as csv_file:
+        #writer = csv.writer(csv_file)
         for key, value in dict_to_write.items():
-            writer.writerow([key])
+            csv_file.write(key + '\n')
+            temp = ''
             for k, v in value.items():
-                writer.writerow([k])
+                temp = (k)
+
                 for kk, vv in v.items():
-                    writer.writerow([kk,vv])
+                    print kk, vv
+                    if temp == '':
+                        temp = temp + str(kk) + ':' + str(vv)
+                    else:
+                        temp = temp + ', ' + str(kk) + ':' + str(vv)
+                print temp
+                temp = temp + '\n'
+                csv_file.write(temp)
 
 def main():
     print 'start to read'
