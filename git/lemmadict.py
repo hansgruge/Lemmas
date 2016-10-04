@@ -1,5 +1,7 @@
 import gzip
 import re
+import csv
+
 
 def read_data(file_to_read):
     d = {}
@@ -15,7 +17,7 @@ def read_data(file_to_read):
                 #         Lemma     word      POS    Features
                 #print i, cols[2], cols[1], cols[3], cols[5].split('|')
                 feats = cols[5].split('|')
-                print cols[2]
+                #print cols[2]
                 for feat in feats:
                     if cols[3] not in d:
                         d[cols[3]] = {}
@@ -36,18 +38,28 @@ def read_data(file_to_read):
                     #     d[cols[3]][cols[2]][feat] = 1
 
 
-#            if i > 200:
-#                break
+            if i > 200:
+                break
 
     return d
 
 
-def write_to_csv(file_to_write):
-    pass
+def write_to_csv(dict_to_write):
+    with open('output.csv', 'wb') as csv_file:
+        writer = csv.writer(csv_file)
+        for key, value in dict_to_write.items():
+            writer.writerow([key])
+            for k, v in value.items():
+                writer.writerow([k])
+                for kk, vv in v.items():
+                    writer.writerow([kk,vv])
 
 def main():
-    dd = read_data('../../versions/parsebank_v4_UD_scrambled.conllu-part-aa.gz')
-    print dd.items()
+    print 'start to read'
+    dd = read_data('../../versions/parsebank_v4_UD_scrambled.conllu.gz')
+    print 'start to write'
+    write_to_csv(dd)
+    print 'done'
 
 if __name__ == '__main__':
     main()
