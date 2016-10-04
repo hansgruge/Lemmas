@@ -38,8 +38,8 @@ def read_data(file_to_read):
                     #     d[cols[3]][cols[2]][feat] = 1
 
 
-            if i > 200:
-                break
+#            if i > 200:
+#                break
 
     return d
 
