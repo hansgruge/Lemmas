@@ -10,7 +10,11 @@ def read_data(file_to_read):
             elif len(line) <= 1:
                 continue
             else:
-                print line.decode('utf-8')
+                cols = line.split('\t')
+                assert (len(cols) == 10), ('Wrong amount of columns, while reading file. ' + str(i) + ' line')
+                if cols[3] == 'PUNCT':
+                    continue
+                print i, cols[2], cols[1], cols[3],cols[5].split('|')
             if i > 20:
                 break
 
