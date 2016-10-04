@@ -15,6 +15,7 @@ def read_data(file_to_read):
                 #         Lemma     word      POS    Features
                 #print i, cols[2], cols[1], cols[3], cols[5].split('|')
                 feats = cols[5].split('|')
+                print cols[2]
                 for feat in feats:
                     if cols[3] not in d:
                         d[cols[3]] = {}
@@ -35,15 +36,18 @@ def read_data(file_to_read):
                     #     d[cols[3]][cols[2]][feat] = 1
 
 
-            if i > 200:
-                break
+#            if i > 200:
+#                break
 
     return d
+
+
+def write_to_csv(file_to_write):
+    pass
 
 def main():
     dd = read_data('../../versions/parsebank_v4_UD_scrambled.conllu-part-aa.gz')
     print dd.items()
-
 
 if __name__ == '__main__':
     main()
