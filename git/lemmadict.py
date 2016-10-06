@@ -34,14 +34,14 @@ def read_data(file_to_read):
 
 
             #with this you can limit how many rows it reads. Just for testing purposes.
-            #if i > 200:
-            #    break
+            if i > 1000000:
+                break
 
     return d
 
 
 def write_to_csv(dict_to_write):
-    with open('output1.csv', 'wb') as csv_file:
+    with gzip.open('output1.csv.gz', 'wb') as csv_file:
         #writer = csv.writer(csv_file)
         for key, value in dict_to_write.items():
             csv_file.write(key + '\n')
@@ -61,7 +61,7 @@ def write_to_csv(dict_to_write):
 
 def main():
     print 'start to read'
-    dd = read_data('../../versions/parsebank_v4_UD_scrambled.conllu.gz')
+    dd = read_data('../../../versions/parsebank_v4_UD_scrambled.conllu.gz')
     print 'start to write'
     write_to_csv(dd)
     print 'done'
