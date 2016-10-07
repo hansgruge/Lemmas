@@ -41,7 +41,7 @@ def read_data(file_to_read):
 
 
 def write_to_csv(dict_to_write):
-    with gzip.open('output1.csv.gz', 'wb') as csv_file:
+    with gzip.open("fileeee.csv.gz", 'wb') as csv_file:
         #writer = csv.writer(csv_file)
         for key, value in dict_to_write.items():
             csv_file.write(key + '\n')
@@ -57,7 +57,8 @@ def write_to_csv(dict_to_write):
                         temp = temp + ', ' + str(kk) + ':' + str(vv)
                 #print temp
                 temp = temp + '\n'
-                csv_file.write(temp)
+                #print temp
+                csv_file.write(temp.encode('utf-8'))
 
 def main():
     print 'start to read'
