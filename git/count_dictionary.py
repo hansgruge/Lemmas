@@ -15,21 +15,21 @@ for line in sys.stdin:
     lemma_reading = (cols[FORM], cols[FEAT])
     word_dict[lemma_reading] = word_dict.get(lemma_reading, 0)+1
 
-import pandas as pd
-import matplotlib as mpl
-
-df = pd.DataFrame([(k1,k2,k3,v) for k1, k23v in d.items()
-                  for k2, k3v in k23v.items()
-                  for k3, v in k3v.items()],
-                  columns=['POS', 'LEMMA', 'FORM + FEAT', 'pcs'])
-print(df.head())
-
-
-df['POS'].value_counts().plot(kind='bar')
+#import pandas as pd
+#import matplotlib as mpl
+#
+#df = pd.DataFrame([(k1,k2,k3,v) for k1, k23v in d.items()
+#                  for k2, k3v in k23v.items()
+#                  for k3, v in k3v.items()],
+#                  columns=['POS', 'LEMMA', 'FORM + FEAT', 'pcs'])
+#print(df.head())
+#
+#
+#df['POS'].value_counts().plot(kind='bar')
 
 
 with open("mydict.pickle", "wb") as f:
-    pickle.dump(df, f, pickle.HIGHEST_PROTOCOL)
+    pickle.dump(d, f, pickle.HIGHEST_PROTOCOL)
 
 #pos_counts = {}
 #for pos, pos_dict in d.items():
